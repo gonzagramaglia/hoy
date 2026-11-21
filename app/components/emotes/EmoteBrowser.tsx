@@ -3,7 +3,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { emotes } from "../../data/emotes";
 import { useLanguage } from "../../contexts/language-context";
-import { SearchX, Check, ExternalLink } from "lucide-react";
+import { SearchX, Check } from "lucide-react";
+import { getAssetPath } from "@/utils/basePath";
 
 export function EmoteBrowser() {
     const { language } = useLanguage();
@@ -29,8 +30,7 @@ export function EmoteBrowser() {
 
         return emotes.filter(emote => {
             if (normalizeText(emote.name).includes(normalizedSearch)) return true;
-            if (normalizeText(emote.twitchName).includes(normalizedSearch)) return true;
-            if (normalizeText(emote.channel).includes(normalizedSearch)) return true;
+            if (emote.channel && normalizeText(emote.channel).includes(normalizedSearch)) return true;
             const tags = emote.tags[language] || [];
             if (tags.some(tag => normalizeText(tag).includes(normalizedSearch))) return true;
             return false;
@@ -39,7 +39,7 @@ export function EmoteBrowser() {
 
     const handleCopy = async (emote: typeof emotes[0]) => {
         try {
-            await navigator.clipboard.writeText(emote.twitchName);
+            await navigator.clipboard.writeText(emote.name);
             setCopiedEmote(emote.name);
         } catch (err) {
             console.error("Failed to copy emote name", err);
@@ -51,7 +51,7 @@ export function EmoteBrowser() {
             {/* Header */}
             <div className={`flex flex-col md:flex-row items-center justify-center pt-4 md:pt-8 pb-2 md:pb-4 gap-0 md:gap-1 max-w-4xl mx-auto ${language === 'es' ? 'md:translate-x-12' : ''}`}>
                 <img
-                    src="/milemojis.png"
+                    src={getAssetPath("/milemojis.png")}
                     alt="Emotes"
                     className="h-64 md:h-80 w-auto aspect-square object-contain hover:scale-105 transition-transform duration-500 drop-shadow-2xl -mt-10 -mb-8 md:-mt-14 md:-mb-12 md:-mr-7 shrink-0"
                 />
@@ -114,10 +114,10 @@ export function EmoteBrowser() {
                                 >
                                     <div className="w-14 h-14 flex items-center justify-center">
                                         {isCopied ? (
-                                            <Check className="w-8 h-8 text-green-500 animate-in zoom-in duration-200" />
+                                             <Check className="w-8 h-8 text-green-500 animate-in zoom-in duration-200" />
                                         ) : (
                                             <img
-                                                src={emote.file}
+                                                src={getAssetPath(emote.file)}
                                                 alt={emote.name}
                                                 className="w-14 h-14 object-contain group-hover:scale-110 transition-transform duration-200"
                                             />
@@ -126,19 +126,9 @@ export function EmoteBrowser() {
                                     <span className={`text-xs font-medium text-center transition-colors ${isCopied ? "text-green-600" : "text-neutral-700"}`}>
                                         {isCopied
                                             ? (language === "en" ? "Copied!" : "¡Copiado!")
-                                            : emote.twitchName}
+                                            : emote.name}
                                     </span>
                                 </button>
-                                <a
-                                    href={`https://twitch.tv/${emote.channel}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="inline-flex items-center gap-1 text-[10px] text-[#9146FF] hover:underline font-medium"
-                                >
-                                    {emote.channel}
-                                    <ExternalLink className="w-2.5 h-2.5" />
-                                </a>
                             </div>
                         );
                     })}

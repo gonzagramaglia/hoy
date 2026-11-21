@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   // Generate SVG with emoji 📝
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><text x='0' y='52' font-size='56'>📝</text></svg>`;

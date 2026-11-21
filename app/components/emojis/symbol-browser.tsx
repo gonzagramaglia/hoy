@@ -3,6 +3,7 @@
 
 
 import { useState, useMemo, useEffect, useRef } from "react";
+import { getAssetPath } from "@/utils/basePath";
 import { symbols } from "../../data/symbols";
 import { useLanguage } from "../../contexts/language-context";
 import { Check, SearchX, X, Hash, ExternalLink } from "lucide-react";
@@ -196,7 +197,7 @@ export function SymbolBrowser() {
                     type="button"
                 >
                     <img
-                        src="/milemojis.png"
+                        src={getAssetPath("/milemojis.png")}
                         alt="Emojis"
                         className={`h-64 md:h-80 w-auto aspect-square object-contain hover:scale-105 transition-transform duration-500 drop-shadow-2xl -mt-10 -mb-8 md:-mt-14 md:-mb-12 md:-mr-7`}
                     />

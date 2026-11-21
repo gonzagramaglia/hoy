@@ -8,6 +8,8 @@ import { useAuth } from '../hooks/useAuth'
 
 type Position = 'left' | 'right'
 
+import { getAssetPath } from "@/utils/basePath";
+
 type Shortcut = {
     id: string
     name: string
@@ -453,7 +455,7 @@ export default function ShortcutFloater() {
                                         draggable="true"
                                     >
                                         <img
-                                            src="/just-focus.png"
+                                            src={getAssetPath("/just-focus.png")}
                                             alt="Just Focus"
                                             className="w-full h-full object-contain rounded-full"
                                         />

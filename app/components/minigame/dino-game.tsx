@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Info } from 'lucide-react';
 import { useLanguage } from "../../contexts/language-context";
 import { useGame } from "../../contexts/game-context";
+import { getAssetPath } from "@/utils/basePath";
 
 interface Obstacle {
     x: number;
@@ -108,25 +109,25 @@ export const DinoGame: React.FC = () => {
 
     useEffect(() => {
         const hand = new Image();
-        hand.src = '/hand.png';
+        hand.src = getAssetPath('/hand.png');
         hand.onload = () => {
             handImage.current = hand;
         };
 
         const shovel = new Image();
-        shovel.src = '/shovel.png';
+        shovel.src = getAssetPath('/shovel.png');
         shovel.onload = () => {
             shovelImage.current = shovel;
         };
 
         const rock = new Image();
-        rock.src = '/rock.png';
+        rock.src = getAssetPath('/rock.png');
         rock.onload = () => {
             rockImage.current = rock;
         };
 
         const cops = new Image();
-        cops.src = '/cops.png';
+        cops.src = getAssetPath('/cops.png');
         cops.onload = () => {
             copsImage.current = cops;
         };

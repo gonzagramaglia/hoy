@@ -1,6 +1,7 @@
 "use client";
 import { useLanguage } from "../../contexts/language-context";
 import { DinoGame } from "./dino-game";
+import { getAssetPath } from "@/utils/basePath";
 
 export function GameView() {
     const { language } = useLanguage();
@@ -13,7 +14,7 @@ export function GameView() {
                     className="hover:scale-105 transition-transform duration-500 drop-shadow-2xl cursor-pointer"
                 >
                     <img
-                        src="/gamer.png"
+                        src={getAssetPath("/gamer.png")}
                         alt="Gamer"
                         className="h-52 md:h-60 w-auto aspect-square object-contain mt-0 md:mt-0 md:mb-0"
                     />

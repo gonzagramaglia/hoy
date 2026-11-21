@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { getAssetPath } from '@/utils/basePath'
 
 interface HeaderProps {
     lang: 'es' | 'en'
@@ -64,7 +65,7 @@ export default function Header({ lang, onAddNote, addNoteText, title, mobileAddT
                 className="hover:scale-105 transition-transform duration-300 block"
             >
                 <img
-                    src="/notes.png"
+                    src={getAssetPath('/notes.png')}
                     alt="Notes"
                     className="w-64 lg:w-72 aspect-square h-auto object-contain select-none cursor-pointer"
                 />

@@ -7,6 +7,7 @@ import Countdown from "./components/Countdown";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { getAssetPath } from "@/utils/basePath";
 
 const baseUrl = "https://hoy.today";
 
@@ -64,7 +65,7 @@ export default function RootLayout({
       <body className="antialiased" cz-shortcut-listen="true">
         <div
           className="fixed inset-0 z-[-1] bg-cover bg-center bg-fixed bg-no-repeat opacity-5"
-          style={{ backgroundImage: "url('/wallpaper.png')" }}
+          style={{ backgroundImage: `url('${getAssetPath('/wallpaper.png')}')` }}
         />
         <ShortcutFloater />
         <div className="fixed left-9 top-48 bottom-32 z-40 hidden lg:flex flex-col gap-4 w-64 overflow-y-auto custom-scrollbar pr-2 pointer-events-none">

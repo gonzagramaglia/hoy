@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import ConfigModal from "./ConfigModal";
+import Link from "next/link";
 import {
   Github,
   ClipboardClock,
@@ -97,14 +98,14 @@ export default function FloatingLinks({ lang }: FloatingLinksProps) {
       {/* Left Side Buttons: Home + Emojis + Music + Tasks */}
       <div className="fixed bottom-8 left-8 flex gap-3 z-50 transition-opacity duration-300">
         {(isMinigame || isEmojis) ? (
-          <a
+          <Link
             href={lang === "en" ? "/en" : "/"}
             className="p-3 bg-white border border-zinc-200 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 group cursor-pointer"
             aria-label={t.goToHome}
             title={t.goToHome}
           >
             <ClipboardClock className="w-6 h-6 text-gray-900 group-hover:text-yellow-500 transition-colors" />
-          </a>
+          </Link>
         ) : (
           <button
             disabled
@@ -126,15 +127,14 @@ export default function FloatingLinks({ lang }: FloatingLinksProps) {
             <Smile className="w-6 h-6 text-zinc-900 transition-colors" />
           </button>
         ) : (
-          <a
+          <Link
             href={emojisUrl}
-            rel="noopener noreferrer"
             className="p-3 bg-white border border-zinc-200 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 group cursor-pointer"
             aria-label={t.goToEmojis}
             title={t.goToEmojis}
           >
             <Smile className="w-6 h-6 text-gray-900 group-hover:text-yellow-500 transition-colors" />
-          </a>
+          </Link>
         )}
 
         {isMinigame ? (
@@ -147,15 +147,14 @@ export default function FloatingLinks({ lang }: FloatingLinksProps) {
             <Joystick className="w-6 h-6 text-zinc-900 transition-colors" />
           </button>
         ) : (
-          <a
+          <Link
             href={playUrl}
-            rel="noopener noreferrer"
             className="p-3 bg-white border border-zinc-200 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 group cursor-pointer"
             aria-label={t.goToPlay}
             title={t.goToPlay}
           >
             <Joystick className="w-6 h-6 text-gray-900 group-hover:text-yellow-500 transition-colors" />
-          </a>
+          </Link>
         )}
       </div>
     </>
